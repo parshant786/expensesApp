@@ -5,9 +5,13 @@ export const ExpensesContext = createContext();
 const handleReducer = (state, action) => {
   switch (action.type) {
     case "update":
-      const index = state.findIndex(({ id }) => id === action.payload);
+      const index = state.findIndex(({ id }) => id === action.payload.id);
+
       let arr = [...state];
-      return arr.splice(index, 1, { ...action.payload });
+
+      arr.splice(index, 1, { ...action.payload });
+      return arr;
+
     case "create":
       let id = new Date().toString() + Math.random().toString;
       return [{ ...action.payload, id }, ...state];
@@ -91,10 +95,10 @@ export const ExpensesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(handleReducer, list);
 
   const handleUpdateExpense = ({ amount, date, description }, id) => {
-    dispatch("update", { amount, date, description, id });
+    dispatch({ type: "update", payload: { amount, date, description, id } });
   };
   const handleCreateExpense = ({ amount, date, description }) => {
-    dispatch("create", { amount, date, description });
+    dispatch({ type: "create", payload: { amount, date, description } });
   };
   const handleDeleteExpense = (id) => {
     dispatch({ type: "delete", payload: id });

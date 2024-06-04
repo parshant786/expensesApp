@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   buttonContainer: {},
   textContainer: {
     paddingHorizontal: 8,
-    paddingVertical: 6,
+    paddingVertical: 10,
     borderRadius: 6,
     backgroundColor: GlobalStyles.colors.accent500,
   },
@@ -32,7 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary50,
   },
   flatTextContainer: {
-    backgroundColor: "transparent",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor:GlobalStyles.colors.gray700
   },
   flatTextStyle: {
     color: GlobalStyles.colors.accent500,
